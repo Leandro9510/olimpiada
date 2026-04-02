@@ -188,7 +188,8 @@ public class App {
 
 		tentativas.add(tentativa);
 
-		int nota = calcularNota(tentativa);
+		CorrecaoService service = new CorrecaoServiceImpl();
+double nota = service.corrigir(tentativa);
 		System.out.println("\n--- Fim da Prova ---");
 		System.out.println("Nota (acertos): " + nota + " / " + tentativa.getRespostas().size());
 	}
@@ -206,7 +207,7 @@ public class App {
 		System.out.println("\n--- Tentativas ---");
 		for (var t : tentativas) {
 			System.out.printf("#%d | participante=%d | prova=%d | nota=%d/%d%n", t.getId(), t.getParticipanteId(),
-					t.getProvaId(), calcularNota(t), t.getRespostas().size());
+					t.getProvaId(), new CorrecaoServiceImpl().corrigir(t), t.getRespostas().size());
 		}
 	}
 
